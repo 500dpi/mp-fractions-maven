@@ -1,18 +1,20 @@
 package edu.grinnell.csc207.util;
 
-/*
- * A class to hold a register of BigFractions.
- */
+/**
+   * A class to hold a register of BigFractions.
+   */
 public class BFRegisterSet {
 
   BigFraction[] objRegister;
+  private static final int MAX = 26;
+  private static final int ASCII_MIN = 97;
 
-  /*
+/**
    * Returns a newly constructed register with 
    * 26 BIgFraction objects in an array.
    */
   public BFRegisterSet() {
-    objRegister = new BigFraction[26];
+    objRegister = new BigFraction[MAX];
   } // BFregisterSet()
 
 /**
@@ -24,7 +26,7 @@ public class BFRegisterSet {
    * @param val The fraction to store.
    */
   public void store(char register, BigFraction val) {
-    objRegister[(int) register - 97] = val;
+    objRegister[(int) register - ASCII_MIN] = val;
   } // store(char,BigFraction)
 
 /**
@@ -35,7 +37,7 @@ public class BFRegisterSet {
    * index of the BIgFraction in the register.
    */
   public BigFraction get(char register) {
-    return objRegister[(int) register - 97];
+    return objRegister[(int) register - ASCII_MIN];
   } // get(char)
 
 /**

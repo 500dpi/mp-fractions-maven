@@ -43,6 +43,7 @@ public class QuickCalculator {
   * Returns true or false if the string is a register.
   * 
   * @param arg A string variable.
+  * @return A boolean value.
   */
   public static boolean regTest(String arg) {
     char[] reg = arg.toCharArray();
@@ -57,6 +58,7 @@ public class QuickCalculator {
    * matching +, -, *, or /.
    * 
    * @param arg A string variable. 
+   * @return A boolean value.
    */
   public static boolean symTest(String arg) {
     if (arg.equals("+") || arg.equals("-") || arg.equals("/") || arg.equals("*")) {
@@ -70,6 +72,7 @@ public class QuickCalculator {
    * the BigFraction type.
    * 
    * @param arg A string variable.
+   * @return A boolean value.
    */
   public static boolean fracTest(String arg) {
     char[] frac = arg.toCharArray();
@@ -93,6 +96,8 @@ public class QuickCalculator {
    * @param args An array of command line arguments
    * @param register An array of BigFraction to store fractions in.
    * @param calculator A calculator that stores the last calculated value.
+   * 
+   * @return A boolean value.
    */
   public static boolean allChecks(String[] args, BFRegisterSet register, BFCalculator calculator) {
     PrintWriter pen = new PrintWriter(System.out, true);
