@@ -19,12 +19,14 @@ import java.io.PrintWriter;
   */
 public class QuickCalculator {
 
-/**
-  * Prints a calculate value from command line arguments.
-  *
-  * @param args Command line arguments containing operations,
-  * fractions, and string commands.
-  */
+  /**
+   * Prints a calculated value from expressions entered in
+   * command line arguments.
+   *
+   * @param args
+   *    Command line arguments containing operations,
+   *    fractions, and string commands.
+   */
   public static void main(String[] args) {
     BFCalculator calculator = new BFCalculator();
     BFRegisterSet register = new BFRegisterSet();
@@ -49,12 +51,14 @@ public class QuickCalculator {
     calculator.clear();
   } // main(String[])
 
-/**
-  * Returns true or false if the string is a register.
-  *
-  * @param arg A string variable.
-  * @return A boolean value.
-  */
+  /**
+   * Checks if the String is a register character.
+   *
+   * @param arg
+   *    A string variable.
+   * @return
+   *    A boolean value.
+   */
   public static boolean regTest(String arg) {
     char[] reg = arg.toCharArray();
     if (arg.length() == 1 && (reg[0] >= 'a' && reg[0] <= 'z')) {
@@ -63,12 +67,14 @@ public class QuickCalculator {
     return false;
   } // regTest(String)
 
-/**
+  /**
    * Returns true or false if the string is a math symbol
    * matching +, -, *, or /.
    *
-   * @param arg A string variable.
-   * @return A boolean value.
+   * @param arg
+   *    A string variable.
+   * @return
+   *    A boolean value.
    */
   public static boolean symTest(String arg) {
     if (arg.equals("+") || arg.equals("-") || arg.equals("/") || arg.equals("*")) {
@@ -77,12 +83,13 @@ public class QuickCalculator {
     return false;
   } // symTest(String)
 
-/**
-   * Returns true or false if the string is a fraction of
-   * the BigFraction type.
+  /**
+   * Checks if the string is a fraction.
    *
-   * @param arg A string variable.
-   * @return A boolean value.
+   * @param arg
+   *     A string variable.
+   * @return
+   *     A boolean value.
    */
   public static boolean fracTest(String arg) {
     char[] frac = arg.toCharArray();
@@ -98,16 +105,18 @@ public class QuickCalculator {
     return false;
   } // fracTest(String)
 
-/**
-   * Returns true or false after checking edge-cases and whether
-   * there is a register, fraction, or symbol present in the command
-   * line arguments.
+  /**
+   * Checks edge-cases and whether there is a register, fraction, or symbol
+   * present in the command line arguments.
    *
-   * @param args An array of command line arguments
-   * @param register An array of BigFraction to store fractions in.
-   * @param calculator A calculator that stores the last calculated value.
-   *
-   * @return A boolean value.
+   * @param args
+   *    An array of command line arguments
+   * @param register
+   *    An array of BigFraction to store fractions in.
+   * @param calculator
+   *    A calculator that stores the last calculated value.
+   * @return
+   *    A boolean value.
    */
   public static boolean allChecks(String[] args, BFRegisterSet register, BFCalculator calculator) {
     PrintWriter pen = new PrintWriter(System.out, true);

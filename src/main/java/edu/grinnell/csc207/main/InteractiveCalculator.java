@@ -18,12 +18,14 @@ import java.io.PrintWriter;
  * A calculator class that can perform simple operations.
  */
 public class InteractiveCalculator {
+
   /**
-  * Prints a calculate value from command line arguments.
-  *
-  * @param args Command line arguments containing operations,
-  * fractions, and string commands.
-  */
+   * Prints a calculate value from command line arguments.
+   *
+   * @param args
+   *    Command line arguments containing operations,
+   *    fractions, and string commands.
+   */
   public static void main(String[] args) {
     BFCalculator calculator = new BFCalculator();
     BFRegisterSet register = new BFRegisterSet();
