@@ -1,26 +1,45 @@
+/*
+ * BFRegister.java
+ *
+ * Author: Sara Jaljaa
+ * Course: CSC-207-01
+ *
+ */
+
 package edu.grinnell.csc207.util;
 
 /**
-   * A class to hold a register of BigFractions.
-   */
+  * A class to hold a register of BigFractions.
+  */
 public class BFRegisterSet {
 
-  BigFraction[] objRegister;
+  /**
+   * Desc.
+   */
+  private BigFraction[] objRegister;
+
+  /**
+   * Desc.
+   */
   private static final int MAX = 26;
+
+  /**
+   * Desc.
+   */
   private static final int ASCII_MIN = 97;
 
-/**
-   * Returns a newly constructed register with 
-   * 26 BIgFraction objects in an array.
-   */
+  /**
+  * Returns a newly constructed register with
+  * 26 BIgFraction objects in an array.
+  */
   public BFRegisterSet() {
     objRegister = new BigFraction[MAX];
   } // BFregisterSet()
 
-/**
-   * Stores a BigFraction in some alphabetical index 
+  /**
+   * Stores a BigFraction in some alphabetical index
    * 0-26 of the register array.
-   * 
+   *
    * @param register The character to indicate the
    * alphabetical index of the register.
    * @param val The fraction to store.
@@ -29,18 +48,20 @@ public class BFRegisterSet {
     objRegister[(int) register - ASCII_MIN] = val;
   } // store(char,BigFraction)
 
-/**
+  /**
    * Returns a BigFraction from the given alphabetical
    * character index (0-26).
-   * 
-   * @param register The character that indicates the 
+   *
+   * @param register The character that indicates the
    * index of the BIgFraction in the register.
+   * @return
+   *    A BigFraction that ???.
    */
   public BigFraction get(char register) {
     return objRegister[(int) register - ASCII_MIN];
   } // get(char)
 
-/**
+  /**
    * Returns an empty register that has all of its
    * fractions set to default 0/1.
    */

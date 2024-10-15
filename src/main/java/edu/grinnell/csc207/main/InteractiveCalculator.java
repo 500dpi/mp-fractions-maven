@@ -1,10 +1,20 @@
+/*
+ * InteractiveCalculator.java
+ *
+ * Author: Sara Jaljaa
+ * Course: CSC-207-01
+ *
+ */
+
 package edu.grinnell.csc207.main;
 
-import edu.grinnell.csc207.util.*;
+import edu.grinnell.csc207.util.BFCalculator;
+import edu.grinnell.csc207.util.BFRegisterSet;
+// import edu.grinnell.csc207.util.BigFraction;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
-/** 
+/**
  * A calculator class that can perform simple operations.
  */
 public class InteractiveCalculator {
@@ -22,16 +32,16 @@ public class InteractiveCalculator {
 
     pen.println("Enter an expression to evaluate: ");
 
-    String user_input = input.nextLine();
+    String userInput = input.nextLine();
 
-    while (!user_input.equals("QUIT")) {
-      String[] arguments = user_input.split(" ");
+    while (!userInput.equals("QUIT")) {
+      String[] arguments = userInput.split(" ");
 
       if (!(QuickCalculator.allChecks(arguments, register, calculator))) {
         System.err.println("Error: Invalid input.");
       } // if
       calculator.clear();
-      user_input = input.nextLine();
+      userInput = input.nextLine();
     } // while
     input.close();
     register.empty();

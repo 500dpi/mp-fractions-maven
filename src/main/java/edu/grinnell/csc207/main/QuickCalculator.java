@@ -1,6 +1,16 @@
+/*
+ * QuickCalculator.java
+ *
+ * Author: Sara Jaljaa
+ * Course: CSC-207-01
+ *
+ */
+
 package edu.grinnell.csc207.main;
 
-import edu.grinnell.csc207.util.*;
+import edu.grinnell.csc207.util.BFCalculator;
+import edu.grinnell.csc207.util.BFRegisterSet;
+import edu.grinnell.csc207.util.BigFraction;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -8,7 +18,7 @@ import java.io.PrintWriter;
   * A class that can take multiple arguments as calcultor input.
   */
 public class QuickCalculator {
-  
+
 /**
   * Prints a calculate value from command line arguments.
   *
@@ -23,16 +33,16 @@ public class QuickCalculator {
 
     pen.println("Enter an expression to evaluate: ");
 
-    String user_input = input.nextLine();
+    String userInput = input.nextLine();
 
-    while (!user_input.equals("QUIT")) {
-      String[] arguments = user_input.split(" ");
+    while (!userInput.equals("QUIT")) {
+      String[] arguments = userInput.split(" ");
 
       if (!(allChecks(arguments, register, calculator))) {
         System.err.println("Error: Invalid input.");
       } // if
       calculator.clear();
-      user_input = input.nextLine();
+      userInput = input.nextLine();
     } // while
     input.close();
     register.empty();
@@ -41,7 +51,7 @@ public class QuickCalculator {
 
 /**
   * Returns true or false if the string is a register.
-  * 
+  *
   * @param arg A string variable.
   * @return A boolean value.
   */
@@ -56,8 +66,8 @@ public class QuickCalculator {
 /**
    * Returns true or false if the string is a math symbol
    * matching +, -, *, or /.
-   * 
-   * @param arg A string variable. 
+   *
+   * @param arg A string variable.
    * @return A boolean value.
    */
   public static boolean symTest(String arg) {
@@ -70,7 +80,7 @@ public class QuickCalculator {
 /**
    * Returns true or false if the string is a fraction of
    * the BigFraction type.
-   * 
+   *
    * @param arg A string variable.
    * @return A boolean value.
    */
@@ -80,23 +90,23 @@ public class QuickCalculator {
       if (frac[i] == '/' && (i == 0 || i == frac.length - 1)) {
         return false;
       } else if ((frac[i] > '0') && (frac[i] < '9')) {
-        return true; 
+        return true;
       } else if (frac[i] == '-' && i != 0) {
         return false;
       } // if
     } // for
     return false;
   } // fracTest(String)
-  
+
 /**
    * Returns true or false after checking edge-cases and whether
    * there is a register, fraction, or symbol present in the command
    * line arguments.
-   * 
+   *
    * @param args An array of command line arguments
    * @param register An array of BigFraction to store fractions in.
    * @param calculator A calculator that stores the last calculated value.
-   * 
+   *
    * @return A boolean value.
    */
   public static boolean allChecks(String[] args, BFRegisterSet register, BFCalculator calculator) {
@@ -106,14 +116,14 @@ public class QuickCalculator {
     if (!(fracTest(args[0]) || symTest(args[0]) || regTest(args[0]))) {
       return false;
     } else if (fracTest(args[0])) {
-      calculator.add(new BigFraction (args[0]));
+      calculator.add(new BigFraction(args[0]));
     } else if (regTest(args[0])) {
       calculator.add(register.get(args[0].charAt(0)));
     } // if
 
     if ((args[0].compareTo("STORE") == 0)) {
       if (regTest(args[1])) {
-       register.store(args[1].charAt(0), calculator.get());
+        register.store(args[1].charAt(0), calculator.get());
       } // if
     } // if
 
@@ -127,19 +137,19 @@ public class QuickCalculator {
       } // if
 
       switch (args[i]) {
-        case "+": 
+        case "+":
           calculator.add(frac);
           break;
-        case "-": 
+        case "-":
           calculator.subtract(frac);
           break;
         case "*":
           calculator.multiply(frac);
           break;
-        case "/": 
+        case "/":
           calculator.divide(frac);
           break;
-        default:  
+        default:
           break;
       } // switch
     } // for
