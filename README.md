@@ -12,8 +12,7 @@ Sara Jaljaa
 A fraction calculator that takes expressions as arguments to calculate.
 
 ### Acknowledgements 
-[Documentation of BigInteger class](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html), or: https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html
+- [BigInteger JavaDocs](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html)
 
 ### Location 
-[Here](https://github.com/500dpi/fun-with-fractions),
-or: https://github.com/500dpi/fun-with-fractions
+- [GitHub link](https://github.com/500dpi/fun-with-fractions)
