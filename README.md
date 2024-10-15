@@ -1,12 +1,19 @@
-Mini-project #2: 
+# Changelog
+- Added header comments to all files in main and util.
+- ...
 
-Name: Sara Jaljaa
+# Mini-Project #2
+Fun with Fractions 
 
-Description: A simple fraction calculator.
+# Author
+Sara Jaljaa
 
-Acknowledgements: 
+# Description
+A fraction calculator that takes expressions as arguments to calculate.
 
-For documentation of BigInteger class:
-> https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html 
+# Acknowledgements 
+[Documentation of BigInteger class](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html), or: https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html
 
-Location: https://github.com/500dpi/fun-with-fractions
+# Location 
+[Here](https://github.com/500dpi/fun-with-fractions),
+or: https://github.com/500dpi/fun-with-fractions
