@@ -1,8 +1,8 @@
-/*
+/**
  * BigFraction.java
  *
- * Author: Sara Jaljaa
- * Course: CSC-207-01
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  *
  */
 
@@ -54,7 +54,7 @@ public class BigFraction {
       this.numerator = num;
       this.denominator = den;
     } // if
-  } // BigFraction(BigInteger,BigInteger)
+  } // BigFraction(BigInteger, BigInteger)
 
   /**
    * Constructs a BigFraction from two integers.
@@ -67,7 +67,7 @@ public class BigFraction {
   public BigFraction(int num, int den) {
     this.numerator = BigInteger.valueOf(num);
     this.denominator = BigInteger.valueOf(den);
-  } // BigFraction(int,int)
+  } // BigFraction(int, int)
 
   /**
    * Constructs a BigFraction from a single integer.
@@ -88,14 +88,16 @@ public class BigFraction {
    *    the numerator and denominator.
    */
   public BigFraction(String frac) {
-    // PrintWriter pen = new PrintWriter(System.out, true);
+
+    // Checks for divisor symbol between the fraction
     String[] strFrac = frac.split("/");
+
     if (strFrac.length == 1) {
       this.denominator = BigInteger.ONE;
     } else {
-      this.numerator = new BigInteger(strFrac[0]);
       this.denominator = new BigInteger(strFrac[1]);
     } // if
+    this.numerator = new BigInteger(strFrac[0]);
   } // BigFraction(String)
 
   /**
@@ -105,16 +107,9 @@ public class BigFraction {
    *    A BigFraction that is simplified.
    */
   public BigFraction reduce() {
-
-    // Declaring numerator, denominator, and variable that
-    // stores the GCD of the fraction.
-    BigInteger num;
-    BigInteger den;
-    BigInteger gcd;
-
-    gcd = this.numerator.gcd(this.denominator);
-    num = this.numerator.divide(gcd);
-    den = this.denominator.divide(gcd);
+    BigInteger gcd = this.numerator.gcd(this.denominator);
+    BigInteger num = this.numerator.divide(gcd);
+    BigInteger den = this.denominator.divide(gcd);
     return new BigFraction(num, den);
   } // reduce()
 
@@ -124,11 +119,14 @@ public class BigFraction {
    * @param addend
    *    The fraction to add.
    * @return
-   *    A BigFraction that is summed and simplified.
+   *    A simplified BigFraction that represents the sum.
    */
   public BigFraction add(BigFraction addend) {
+
+    // Declaring numerator and denominator
     BigInteger num;
     BigInteger den;
+
     num = (this.numerator.multiply(addend.denominator)).add(this.denominator.multiply(addend.numerator));
     den = (this.denominator.multiply(addend.denominator));
     return new BigFraction(num, den).reduce();
@@ -140,7 +138,7 @@ public class BigFraction {
    * @param subtrahend
    *    The fraction to subtract.
    * @return
-   *    A BigFraction that represents the difference and is simplified.
+   *    A simplified BigFraction that represents the difference.
    */
   public BigFraction subtract(BigFraction subtrahend) {
 
@@ -152,7 +150,7 @@ public class BigFraction {
     num = (this.numerator.multiply(subtrahend.denominator)).subtract(this.denominator.multiply(subtrahend.numerator));
     den = (this.denominator.multiply(subtrahend.denominator));
     return new BigFraction(num, den).reduce();
-  } // subtract(BigInteger)
+  } // subtract(BigFraction)
 
   /**
    * Multiplies two fractions.
@@ -160,18 +158,13 @@ public class BigFraction {
    * @param multiplier
    *    The fraction to multiply.
    * @return
-   *    A new product BigFraction that is in its reduced form.
+   *    A simplified BigFraction that represents the product.
    */
   public BigFraction multiply(BigFraction multiplier) {
-
-    // Declaring numerator and denominator
-    BigInteger num;
-    BigInteger den;
-
-    num = this.numerator.multiply(multiplier.numerator);
-    den = this.denominator.multiply(multiplier.denominator);
+    BigInteger num = this.numerator.multiply(multiplier.numerator);
+    BigInteger den = this.denominator.multiply(multiplier.denominator);
     return new BigFraction(num, den).reduce();
-  } // multiply(BigInteger)
+  } // multiply(BigFraction)
 
   /**
    * Divides two fractions.
@@ -179,24 +172,19 @@ public class BigFraction {
    * @param divisor
    *    The fraction to divide by.
    * @return
-   *    A new quotient BigFraction that is in its reduced form.
+   *    A simplified BigFraction that represents the quotient.
    */
   public BigFraction divide(BigFraction divisor) {
-
-    // Declaring numerator and denominator
-    BigInteger num;
-    BigInteger den;
-
-    num = this.numerator.multiply(divisor.denominator);
-    den = this.denominator.multiply(divisor.numerator);
+    BigInteger num = this.numerator.multiply(divisor.denominator);
+    BigInteger den = this.denominator.multiply(divisor.numerator);
     return new BigFraction(num, den).reduce();
   } // divide(BigFraction)
 
   /**
-   * Clears a fraction by setting it to the default fraction 0/1.
+   * Clears a fraction by setting it to the default fraction, 0/1.
    *
    * @return
-   *    A new BigFraction 0/1.
+   *    A new BigFraction of the form 0/1.
    */
   public BigFraction clear() {
     return new BigFraction(BigInteger.ZERO, BigInteger.ONE);
@@ -206,11 +194,13 @@ public class BigFraction {
    * Converts a BigFraction to a string.
    *
    * @return
-   *    A new string fraction.
+   *    The BigFraction as a string.
    */
   public String toString() {
-    if (this.numerator == BigInteger.ZERO || this.denominator == BigInteger.ZERO) {
+    if (this.numerator == BigInteger.ZERO) {
       return "0";
+    } else if (this.denominator == BigInteger.ZERO) {
+      return "Undefined";
     } else if (this.denominator == BigInteger.ONE) {
       return this.numerator.toString();
     } // if
@@ -219,7 +209,7 @@ public class BigFraction {
   } // toString()
 
   /**
-   * Finds the values of the numerator.
+   * The value of the numerator.
    *
    * @return
    *    A BigInteger numerator value.
@@ -229,7 +219,7 @@ public class BigFraction {
   } // numerator()
 
   /**
-   * Finds the value of the denominator.
+   * The value of the denominator.
    *
    * @return
    *    A BigInteger denominator value.

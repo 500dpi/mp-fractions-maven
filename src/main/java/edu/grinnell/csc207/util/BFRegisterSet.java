@@ -1,8 +1,8 @@
-/*
+/**
  * BFRegister.java
  *
- * Author: Sara Jaljaa
- * Course: CSC-207-01
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  *
  */
 
@@ -33,7 +33,7 @@ public class BFRegisterSet {
   * Constructs a register with 26 BigFraction objects.
   */
   public BFRegisterSet() {
-    objRegister = new BigFraction[MAX];
+    this.objRegister = new BigFraction[MAX];
   } // BFregisterSet()
 
   /**
@@ -46,7 +46,7 @@ public class BFRegisterSet {
    *    The fraction to store.
    */
   public void store(char register, BigFraction val) {
-    objRegister[(int) register - ASCII_MIN] = val;
+    this.objRegister[(int) register - ASCII_MIN] = val;
   } // store(char,BigFraction)
 
   /**
@@ -60,7 +60,7 @@ public class BFRegisterSet {
    *    A BigFraction that is located at the register's index.
    */
   public BigFraction get(char register) {
-    return objRegister[(int) register - ASCII_MIN];
+    return this.objRegister[(int) register - ASCII_MIN];
   } // get(char)
 
   /**
@@ -69,8 +69,8 @@ public class BFRegisterSet {
    */
   public void empty() {
     BigFraction empty = new BigFraction(0, 1);
-    for (int i = 0; i < objRegister.length - 1; i++) {
-      objRegister[i] = empty;
+    for (int i = 0; i < this.objRegister.length - 1; i++) {
+      this.objRegister[i] = empty;
     } // for
   } // empty()
 } // class BFRegisterSet

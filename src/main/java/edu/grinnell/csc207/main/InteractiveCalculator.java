@@ -1,8 +1,8 @@
-/*
+/**
  * InteractiveCalculator.java
  *
- * Author: Sara Jaljaa
- * Course: CSC-207-01
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  *
  */
 
