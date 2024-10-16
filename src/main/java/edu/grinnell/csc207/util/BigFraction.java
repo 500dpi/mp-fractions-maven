@@ -197,15 +197,16 @@ public class BigFraction {
    *    The BigFraction as a string.
    */
   public String toString() {
-    if (this.numerator == BigInteger.ZERO) {
+    BigFraction reduced = this.reduce();
+
+    if (reduced.numerator.compareTo(BigInteger.ZERO) == 0) {
       return "0";
-    } else if (this.denominator == BigInteger.ZERO) {
+    } else if (reduced.denominator.compareTo(BigInteger.ZERO) == 0) {
       return "Undefined";
-    } else if (this.denominator == BigInteger.ONE) {
-      return this.numerator.toString();
+    } else if (reduced.denominator.compareTo(BigInteger.ONE) == 0) {
+      return reduced.numerator.toString();
     } // if
-    this.reduce();
-    return this.numerator.toString() + "/" + this.denominator.toString();
+    return reduced.numerator.toString() + "/" + reduced.denominator.toString();
   } // toString()
 
   /**
@@ -215,7 +216,7 @@ public class BigFraction {
    *    A BigInteger numerator value.
    */
   public BigInteger numerator() {
-    return this.numerator;
+    return this.reduce().numerator;
   } // numerator()
 
   /**
@@ -225,7 +226,7 @@ public class BigFraction {
    *    A BigInteger denominator value.
    */
   public BigInteger denominator() {
-    return this.denominator;
+    return this.reduce().denominator;
   } // denominator()
 
   /**
