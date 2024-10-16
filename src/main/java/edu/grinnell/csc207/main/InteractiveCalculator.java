@@ -30,18 +30,23 @@ public class InteractiveCalculator {
 
     pen.println("Enter an expression to evaluate: ");
 
-    String userInput = input.nextLine();
+    String expression = input.nextLine();
 
-    while (!userInput.equals("QUIT")) {
-      String[] arguments = userInput.split(" ");
+    while (!expression.equals("QUIT")) {
+      if (expression == null || expression == " ") {
+        System.err.println("Error: Cannot evaluate non-fraction terms.");
+      } // if
+
+      String[] arguments = expression.split(" ");
 
       if (!(QuickCalculator.allChecks(arguments, register, calculator))) {
         System.err.println("Error: Invalid input.");
       } // if
       calculator.clear();
-      userInput = input.nextLine();
+      expression = input.nextLine();
     } // while
     input.close();
+    pen.close();
     register.empty();
     calculator.clear();
   } // main(String[])

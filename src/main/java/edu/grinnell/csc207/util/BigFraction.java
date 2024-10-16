@@ -25,12 +25,12 @@ public class BigFraction {
   /**
    * Default numerator value for a constructed BigFraction.
    */
-  private static final BigInteger NUMDEFAULT = BigInteger.ZERO;
+  private static final BigInteger NUM_DEFAULT = BigInteger.ZERO;
 
   /**
    * Default denominator value for a constructed BigFraction.
    */
-  private static final BigInteger DENDEFAULT = BigInteger.ONE;
+  private static final BigInteger DEN_DEFAULT = BigInteger.ONE;
 
   /**
    * Constructs a BigFraction from two BigIntegers.
@@ -42,8 +42,8 @@ public class BigFraction {
    */
   public BigFraction(BigInteger num, BigInteger den) {
     if (den.compareTo(BigInteger.ZERO) == 0) {
-      this.numerator = NUMDEFAULT;
-      this.denominator = DENDEFAULT;
+      this.numerator = NUM_DEFAULT;
+      this.denominator = DEN_DEFAULT;
     } else if (den.compareTo(BigInteger.ZERO) < 0) {
       this.numerator = num.negate();
       this.denominator = den.negate();
@@ -103,7 +103,7 @@ public class BigFraction {
    * @return
    *    A BigFraction that is simplified.
    */
-  public BigFraction reduce() {
+  protected BigFraction reduce() {
     BigInteger gcd = this.numerator.gcd(this.denominator);
     BigInteger num = this.numerator.divide(gcd);
     BigInteger den = this.denominator.divide(gcd);
@@ -197,7 +197,7 @@ public class BigFraction {
    *    A new BigFraction of the form 0/1.
    */
   public BigFraction clear() {
-    return new BigFraction(BigInteger.ZERO, BigInteger.ONE);
+    return new BigFraction(NUM_DEFAULT, DEN_DEFAULT);
   } // clear()
 
   /**
@@ -238,18 +238,4 @@ public class BigFraction {
   public BigInteger denominator() {
     return this.reduce().denominator;
   } // denominator()
-
-  /**
-   * Converts a fraction to an integer.
-   *
-   * @return
-   *    A BigInteger representing the fraction as a whole number.
-   */
-  public BigInteger fracToWhole() {
-    if (this.denominator.remainder(this.numerator).compareTo(BigInteger.ZERO) == 0) {
-      BigInteger quotient = this.denominator.divide(this.numerator);
-      return quotient;
-    } // if
-    return BigInteger.ZERO;
-  } // fracToWhole()
 } // class BigFraction

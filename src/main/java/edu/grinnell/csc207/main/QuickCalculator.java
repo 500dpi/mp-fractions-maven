@@ -17,39 +17,49 @@ import java.io.PrintWriter;
 public class QuickCalculator {
 
   /**
-   * Prints a calculated value from expressions entered in
-   * command line arguments.
+   * Prints a calculated value from expressions entered in command line arguments.
    *
-   * @param args
-   *    Command line arguments containing operations,
-   *    fractions, and string commands.
+   * @param args Command line arguments containing operations, fractions, and string commands.
    */
   public static void main(String[] args) {
     BFCalculator calculator = new BFCalculator();
     BFRegisterSet register = new BFRegisterSet();
     PrintWriter pen = new PrintWriter(System.out, true);
     Scanner input = new Scanner(System.in);
+    String[] arguments = null;
 
     pen.println("Enter an expression to evaluate: ");
 
-    String userInput = input.nextLine();
+    String expression = input.nextLine();
 
-    while (!userInput.equals("QUIT")) {
-      String[] arguments = userInput.split(" ");
-
-      if (!(allChecks(arguments, register, calculator))) {
+    while (!expression.equals("QUIT")) {
+      if (expression.length() == 1 && (expression.charAt(0) <= ' ')) {
         System.err.println("Error: Invalid input.");
+      } else {
+        arguments = expression.split(" ");
+
+        if (!(allChecks(arguments, register, calculator))) {
+          System.err.println("Error: Invalid input.");
+        } // if
+        calculator.clear();
       } // if
-      calculator.clear();
-      userInput = input.nextLine();
+      expression = input.nextLine();
+      pen.flush();
     } // while
+
+    if (arguments[0].equals("STORE")) {
+      if (regTest(arguments[1])) {
+        register.store(arguments[1].charAt(0), calculator.get());
+      } // if
+    } // if
+
     input.close();
     register.empty();
     calculator.clear();
   } // main(String[])
 
   /**
-   * Checks if the String is a register character.
+   * Checks if the string is a register character.
    *
    * @param arg
    *    A string variable.
@@ -65,8 +75,7 @@ public class QuickCalculator {
   } // regTest(String)
 
   /**
-   * Returns true or false if the string is a math symbol
-   * matching +, -, *, or /.
+   * Returns true or false if the string is a math symbol matching +, -, *, or /.
    *
    * @param arg
    *    A string variable.
@@ -84,9 +93,9 @@ public class QuickCalculator {
    * Checks if the string is a fraction.
    *
    * @param arg
-   *     A string variable.
+   *    A string variable.
    * @return
-   *     A boolean value.
+   *    A boolean value.
    */
   public static boolean fracTest(String arg) {
     char[] frac = arg.toCharArray();
@@ -103,8 +112,8 @@ public class QuickCalculator {
   } // fracTest(String)
 
   /**
-   * Checks edge-cases and whether there is a register, fraction, or symbol
-   * present in the command line arguments.
+   * Checks edge-cases and whether there is a register, fraction, and/or symbol present
+   * in the command line arguments.
    *
    * @param args
    *    An array of command line arguments
@@ -118,6 +127,12 @@ public class QuickCalculator {
   public static boolean allChecks(String[] args, BFRegisterSet register, BFCalculator calculator) {
     PrintWriter pen = new PrintWriter(System.out, true);
     BigFraction frac;
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i] == null) {
+        return false;
+      } // if
+    } // for
 
     if (!(fracTest(args[0]) || symTest(args[0]) || regTest(args[0]))) {
       return false;
@@ -142,6 +157,7 @@ public class QuickCalculator {
         return false;
       } // if
 
+      // Checks for operations & executes the operation if found
       switch (args[i]) {
         case "+":
           calculator.add(frac);
@@ -160,7 +176,6 @@ public class QuickCalculator {
       } // switch
     } // for
 
-    calculator.get().reduce();
     pen.println(calculator.get().toString());
     return true;
   } // allChecks(Srting[], BFRegisterSet, BFCalculator)
