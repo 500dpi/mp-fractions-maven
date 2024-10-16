@@ -16,7 +16,7 @@ A fraction calculator that takes expressions as arguments to calculate.
 
 ### Acknowledgements 
 - [BigInteger JavaDocs](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html):
-For methods to compare BigInteger values.
+For general BigInteger methods (such as *gcd(), compareTo()*).
 - [String JavaDocs](https://checkstyle.org/checks/javadoc/javadoctype.html#JavadocType): 
 For general String methods.
 - [unknownTags](https://checkstyle.org/checks/javadoc/javadoctype.html#JavadocType):
