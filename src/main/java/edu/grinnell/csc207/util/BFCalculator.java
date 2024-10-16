@@ -1,15 +1,12 @@
-/**
- * BFCalculator.java
- *
- * @author Sara Jaljaa
- * @course CSC-207-01
- *
- */
-
 package edu.grinnell.csc207.util;
 
 /**
+ * BFCalculator.java
+ *
  * A class containing helper methods to manipulate the last computed value.
+ *
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  */
 public class BFCalculator {
 

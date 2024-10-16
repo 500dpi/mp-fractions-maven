@@ -1,15 +1,12 @@
-/**
- * BFRegister.java
- *
- * @author Sara Jaljaa
- * @course CSC-207-01
- *
- */
-
 package edu.grinnell.csc207.util;
 
 /**
+ * BFRegister.java
+ *
  * A class to hold a register of BigFractions.
+ *
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  */
 public class BFRegisterSet {
 

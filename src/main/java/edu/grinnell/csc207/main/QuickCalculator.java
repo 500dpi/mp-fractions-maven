@@ -1,11 +1,3 @@
-/**
- * QuickCalculator.java
- *
- * @author Sara Jaljaa
- * @course CSC-207-01
- *
- */
-
 package edu.grinnell.csc207.main;
 
 import edu.grinnell.csc207.util.BFCalculator;
@@ -15,8 +7,13 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 
 /**
-  * A class that can take multiple arguments as calcultor input.
-  */
+ * QuickCalculator.java
+ *
+ * A calculator that takes multiple arguments as input.
+ *
+ * @author Sara Jaljaa
+ * @course CSC-207-01
+ */
 public class QuickCalculator {
 
   /**

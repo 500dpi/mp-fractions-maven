@@ -1,21 +1,17 @@
-/**
- * InteractiveCalculator.java
- *
- * @author Sara Jaljaa
- * @course CSC-207-01
- *
- */
-
 package edu.grinnell.csc207.main;
 
 import edu.grinnell.csc207.util.BFCalculator;
 import edu.grinnell.csc207.util.BFRegisterSet;
-// import edu.grinnell.csc207.util.BigFraction;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
 /**
+ * InteractiveCalculator.java
+ *
  * A calculator class that can perform simple operations.
+ *
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  */
 public class InteractiveCalculator {
 

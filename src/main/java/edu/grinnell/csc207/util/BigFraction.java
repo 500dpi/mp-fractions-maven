@@ -1,17 +1,14 @@
-/**
- * BigFraction.java
- *
- * @author Sara Jaljaa
- * @course CSC-207-01
- *
- */
-
 package edu.grinnell.csc207.util;
 
 import java.math.BigInteger;
 
 /**
+ * BigFraction.java
+ *
  * A class that creates a fraction from two BigIntegers.
+ *
+ * @author Sara Jaljaa
+ * @course CSC-207-01
  */
 public class BigFraction {
 
@@ -236,7 +233,7 @@ public class BigFraction {
    *    A BigInteger representing the fraction as a whole number.
    */
   public BigInteger fracToWhole() {
-    if (this.denominator.remainder(this.numerator) == BigInteger.ZERO) {
+    if (this.denominator.remainder(this.numerator).compareTo(BigInteger.ZERO) == 0) {
       BigInteger quotient = this.denominator.divide(this.numerator);
       return quotient;
     } // if
