@@ -111,6 +111,20 @@ public class BigFraction {
   } // reduce()
 
   /**
+   * Creates a BigFraction with common denominator by cross-multiplying.
+   *
+   * @param frac
+   *    The BigFraction that will be used to find a common denominator.
+   * @return
+   *    A new BigFraction with a common denominator of frac.
+   */
+  public BigFraction commDen(BigFraction frac) {
+    BigInteger num = this.numerator.multiply(frac.denominator);
+    BigInteger den = this.denominator.multiply(frac.denominator);
+    return new BigFraction(num, den);
+  } // commDen(BigFraction)
+
+  /**
    * Adds two fractions together.
    *
    * @param addend
@@ -120,17 +134,17 @@ public class BigFraction {
    */
   public BigFraction add(BigFraction addend) {
 
-    // Declaring numerator and denominator
-    BigInteger num;
-    BigInteger den;
+    // Create a fraction that is equal to this fraction but
+    // has a common denominator with addend
+    BigFraction eqDenom = this.commDen(addend);
 
-    num = (this.numerator.multiply(addend.denominator)).add(this.denominator.multiply(addend.numerator));
-    den = (this.denominator.multiply(addend.denominator));
-    return new BigFraction(num, den).reduce();
+    // Add the new numerator to addend's new common denominator numerator
+    BigInteger num = eqDenom.numerator.add(this.denominator.multiply(addend.numerator));
+    return new BigFraction(num, eqDenom.denominator).reduce();
   } // add(BigFraction)
 
   /**
-   * Subtracts two fractions.
+   * Subtracts a fraction from another.
    *
    * @param subtrahend
    *    The fraction to subtract.
@@ -139,18 +153,17 @@ public class BigFraction {
    */
   public BigFraction subtract(BigFraction subtrahend) {
 
-    // Declaring numerator and denominator
-    BigInteger num;
-    BigInteger den;
+    // Create a fraction that is equal to this fraction but
+    // has a common denominator with addend
+    BigFraction eqDenom = commDen(subtrahend);
 
-    // Need to fix length (add converter?)
-    num = (this.numerator.multiply(subtrahend.denominator)).subtract(this.denominator.multiply(subtrahend.numerator));
-    den = (this.denominator.multiply(subtrahend.denominator));
-    return new BigFraction(num, den).reduce();
+    // Subtract the new numerator from subtrahend's new common denominator numerator
+    BigInteger num = eqDenom.numerator.subtract(this.denominator.multiply(subtrahend.numerator));
+    return new BigFraction(num, eqDenom.denominator).reduce();
   } // subtract(BigFraction)
 
   /**
-   * Multiplies two fractions.
+   * Multiplies two fractions together.
    *
    * @param multiplier
    *    The fraction to multiply.
@@ -164,7 +177,7 @@ public class BigFraction {
   } // multiply(BigFraction)
 
   /**
-   * Divides two fractions.
+   * Divides one fraction by another.
    *
    * @param divisor
    *    The fraction to divide by.
