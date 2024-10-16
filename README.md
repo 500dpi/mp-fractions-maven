@@ -3,6 +3,8 @@
 - Rewrote clearer (and correctly formatted) JavaDoc comments in main & util.
 - Debugged & fixed methods [**BigFraction** toString()] that did not pass all tests.
 
+***
+
 ### Mini-Project #2
 Fun with Fractions 
 
