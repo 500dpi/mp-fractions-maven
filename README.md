@@ -6,7 +6,7 @@
 ## Mini-Project #2: Fun with Fractions
 
 ### Author
-Sara Jaljaa
+- Sara Jaljaa
 
 ### Overview
 A fraction calculator that takes expressions as arguments to calculate.
@@ -24,4 +24,4 @@ For implementing custom tags.
 ---
 
 ### GitHub (this project)
-- [GitHub/500dpi](https://github.com/500dpi/fun-with-fractions)
+- [500dpi/mp-fractions-maven](https://github.com/500dpi/mp-fractions-maven)
