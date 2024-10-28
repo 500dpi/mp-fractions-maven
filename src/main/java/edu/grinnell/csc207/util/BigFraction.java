@@ -3,8 +3,6 @@ package edu.grinnell.csc207.util;
 import java.math.BigInteger;
 
 /**
- * BigFraction.java
- *
  * A class that creates a fraction from two BigIntegers.
  *
  * @author Sara Jaljaa
@@ -13,22 +11,22 @@ import java.math.BigInteger;
 public class BigFraction {
 
   /**
-   * The numerator of the BigFraction.
+   * The numerator.
    */
   private BigInteger numerator;
 
   /**
-   * The denominator of the BigFraction.
+   * The denominator.
    */
   private BigInteger denominator;
 
   /**
-   * Default numerator value for a constructed BigFraction.
+   * Default numerator value.
    */
   private static final BigInteger NUM_DEFAULT = BigInteger.ZERO;
 
   /**
-   * Default denominator value for a constructed BigFraction.
+   * Default denominator value.
    */
   private static final BigInteger DEN_DEFAULT = BigInteger.ONE;
 
@@ -50,7 +48,7 @@ public class BigFraction {
     } else {
       this.numerator = num;
       this.denominator = den;
-    } // if
+    } // elif
   } // BigFraction(BigInteger, BigInteger)
 
   /**
@@ -85,16 +83,14 @@ public class BigFraction {
    *    the numerator and denominator.
    */
   public BigFraction(String frac) {
-
-    // Checks for divisor symbol between the fraction
     String[] strFrac = frac.split("/");
+    this.numerator = new BigInteger(strFrac[0]);
 
     if (strFrac.length == 1) {
       this.denominator = BigInteger.ONE;
     } else {
       this.denominator = new BigInteger(strFrac[1]);
-    } // if
-    this.numerator = new BigInteger(strFrac[0]);
+    } // elif
   } // BigFraction(String)
 
   /**
@@ -114,15 +110,16 @@ public class BigFraction {
    * Creates a BigFraction with common denominator by cross-multiplying.
    *
    * @param frac
-   *    The BigFraction that will be used to find a common denominator.
+   *    The BigFraction that will be used to find a common denominator
+   *    (the giant one).
    * @return
-   *    A new BigFraction with a common denominator of frac.
+   *    A new BigFraction with a common denominator.
    */
-  public BigFraction commDen(BigFraction frac) {
+  private BigFraction equiv(BigFraction frac) {
     BigInteger num = this.numerator.multiply(frac.denominator);
     BigInteger den = this.denominator.multiply(frac.denominator);
     return new BigFraction(num, den);
-  } // commDen(BigFraction)
+  } // equiv(BigFraction)
 
   /**
    * Adds two fractions together.
@@ -133,12 +130,10 @@ public class BigFraction {
    *    A simplified BigFraction that represents the sum.
    */
   public BigFraction add(BigFraction addend) {
+    // Create a common denominator
+    BigFraction eqDenom = this.equiv(addend);
 
-    // Create a fraction that is equal to this fraction but
-    // has a common denominator with addend
-    BigFraction eqDenom = this.commDen(addend);
-
-    // Add the new numerator to addend's new common denominator numerator
+    // Convert both fractions to have common denominators, then add the two
     BigInteger num = eqDenom.numerator.add(this.denominator.multiply(addend.numerator));
     return new BigFraction(num, eqDenom.denominator).reduce();
   } // add(BigFraction)
@@ -152,12 +147,10 @@ public class BigFraction {
    *    A simplified BigFraction that represents the difference.
    */
   public BigFraction subtract(BigFraction subtrahend) {
+    // Create a common denominator
+    BigFraction eqDenom = equiv(subtrahend);
 
-    // Create a fraction that is equal to this fraction but
-    // has a common denominator with addend
-    BigFraction eqDenom = commDen(subtrahend);
-
-    // Subtract the new numerator from subtrahend's new common denominator numerator
+    // Convert both fractions to have common denominators, then subtract the two
     BigInteger num = eqDenom.numerator.subtract(this.denominator.multiply(subtrahend.numerator));
     return new BigFraction(num, eqDenom.denominator).reduce();
   } // subtract(BigFraction)
@@ -196,7 +189,7 @@ public class BigFraction {
    * @return
    *    A new BigFraction of the form 0/1.
    */
-  public BigFraction clear() {
+  protected BigFraction clear() {
     return new BigFraction(NUM_DEFAULT, DEN_DEFAULT);
   } // clear()
 
@@ -215,7 +208,7 @@ public class BigFraction {
       return "Undefined";
     } else if (reduced.denominator.compareTo(BigInteger.ONE) == 0) {
       return reduced.numerator.toString();
-    } // if
+    } // elif
     return reduced.numerator.toString() + "/" + reduced.denominator.toString();
   } // toString()
 
