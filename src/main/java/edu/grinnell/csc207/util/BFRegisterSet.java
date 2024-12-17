@@ -1,8 +1,6 @@
 package edu.grinnell.csc207.util;
 
 /**
- * BFRegister.java
- *
  * A class to hold a register of BigFractions.
  *
  * @author Sara Jaljaa
@@ -13,25 +11,33 @@ public class BFRegisterSet {
   /**
    * An array of BigFractions that make up the register.
    */
-  private BigFraction[] objRegister;
+  private BigFraction[] register;
 
   /**
-   * The maximum size of the array (all alphabetical
-   * characters, exclusive).
+   * The maximum size of the register (exclusive).
    */
   private static final int MAX = 26;
 
   /**
-   * The first value of the alphabet (lowercase a) in ASCII.
-   */
-  private static final int ASCII_MIN = 97;
-
-  /**
-  * Constructs a register with 26 BigFraction objects.
+  * Constructs an empty register with 26 BigFractions.
   */
   public BFRegisterSet() {
-    this.objRegister = new BigFraction[MAX];
+    this.register = new BigFraction[MAX];
+    this.empty();
   } // BFregisterSet()
+
+  /**
+   * Checks if a character is within the bounds 0-26  (exclusive).
+   *
+   * @param x
+   *    The character's alphabetical index.
+   *
+   * @return
+   *    True or false if x is within bounds.
+   */
+  protected boolean bounds(int x) {
+    return (x >= 0 && x < 26);
+  } // bounds(int)
 
   /**
    * Stores a BigFraction in some alphabetical index
@@ -43,12 +49,13 @@ public class BFRegisterSet {
    *    The fraction to store.
    */
   public void store(char register, BigFraction val) {
-    this.objRegister[(int) register - ASCII_MIN] = val;
-  } // store(char,BigFraction)
+    if (bounds(register - 'a')) {
+      this.register[(int) (register - 'a')] = val;
+    } // if
+  } // store(char, BigFraction)
 
   /**
-   * Returns a BigFraction from the given alphabetical
-   * character index (0-26).
+   * Returns a BigFraction from the index stored.
    *
    * @param register
    *    The character that indicates the index of the
@@ -57,7 +64,11 @@ public class BFRegisterSet {
    *    A BigFraction that is located at the register's index.
    */
   public BigFraction get(char register) {
-    return this.objRegister[(int) register - ASCII_MIN];
+    if (bounds(register - 'a')) {
+      return this.register[(int) (register - 'a')];
+    } else {
+      return null;
+    } // elif
   } // get(char)
 
   /**
@@ -66,8 +77,8 @@ public class BFRegisterSet {
    */
   public void empty() {
     BigFraction empty = new BigFraction(0, 1);
-    for (int i = 0; i < this.objRegister.length - 1; i++) {
-      this.objRegister[i] = empty;
+    for (int i = 0; i < this.register.length - 1; i++) {
+      this.register[i] = empty;
     } // for
   } // empty()
 } // class BFRegisterSet

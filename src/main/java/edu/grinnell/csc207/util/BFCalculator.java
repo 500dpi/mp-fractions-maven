@@ -1,9 +1,7 @@
 package edu.grinnell.csc207.util;
 
 /**
- * BFCalculator.java
- *
- * A class containing helper methods to manipulate the last computed value.
+ * Calculates fraction expressions.
  *
  * @author Sara Jaljaa
  * @course CSC-207-01
@@ -13,18 +11,13 @@ public class BFCalculator {
   /**
    * The last calculated fraction.
    */
-  private BigFraction lastVal;
+  private BigFraction current;
 
   /**
-   * The default fraction.
-   */
-  private static final BigFraction DEFAULT = new BigFraction(0, 1);
-
-  /**
-   * A constructor to set the last value to the default fraction, 0/1.
+   * A constructor to set the last value to the default fraction.
    */
   public BFCalculator() {
-    lastVal = DEFAULT;
+    current = null;
   } // BFCalculator()
 
   /**
@@ -33,12 +26,11 @@ public class BFCalculator {
    * @return
    *    Returns the last BigFraction computed.
    */
-  @SuppressWarnings("Checkstyle")
   public BigFraction get() {
-    if (lastVal == null) {
-      lastVal = new BigFraction(0, 1);
+    if (current == null) {
+      current = new BigFraction(0, 1);
     } // if
-    return lastVal.reduce();
+    return current.reduce();
   } // get()
 
   /**
@@ -48,7 +40,7 @@ public class BFCalculator {
    *    The fraction to add.
    */
   public void add(BigFraction val) {
-    this.lastVal = this.get().add(val);
+    this.current = this.get().add(val);
   } // add(BigFraction)
 
   /**
@@ -58,7 +50,7 @@ public class BFCalculator {
    *    The fraction to subtract.
    */
   public void subtract(BigFraction val) {
-    this.lastVal = this.get().subtract(val);
+    this.current = this.get().subtract(val);
   } // subtract(BigFraction)
 
   /**
@@ -68,7 +60,7 @@ public class BFCalculator {
    *    The multiplier fraction.
    */
   public void multiply(BigFraction val) {
-    this.lastVal = this.get().multiply(val);
+    this.current = this.get().multiply(val);
   } // multiply(BigFraction)
 
   /**
@@ -78,7 +70,7 @@ public class BFCalculator {
    *    The fraction to divide by.
    */
   public void divide(BigFraction val) {
-    this.lastVal = this.get().divide(val);
+    this.current = this.get().divide(val);
   } // divide(BigFraction)
 
   /**
@@ -86,6 +78,6 @@ public class BFCalculator {
    * 0/1.
    */
   public void clear() {
-    this.lastVal = this.get().clear();
+    this.current = this.get().clear();
   } // clear()
 } // class BFCalculator

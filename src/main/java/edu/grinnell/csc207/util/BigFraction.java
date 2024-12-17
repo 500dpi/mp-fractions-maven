@@ -21,16 +21,6 @@ public class BigFraction {
   private BigInteger denominator;
 
   /**
-   * Default numerator value.
-   */
-  private static final BigInteger NUM_DEFAULT = BigInteger.ZERO;
-
-  /**
-   * Default denominator value.
-   */
-  private static final BigInteger DEN_DEFAULT = BigInteger.ONE;
-
-  /**
    * Constructs a BigFraction from two BigIntegers.
    *
    * @param num
@@ -40,8 +30,8 @@ public class BigFraction {
    */
   public BigFraction(BigInteger num, BigInteger den) {
     if (den.compareTo(BigInteger.ZERO) == 0) {
-      this.numerator = NUM_DEFAULT;
-      this.denominator = DEN_DEFAULT;
+      this.numerator = BigInteger.ZERO;
+      this.denominator = BigInteger.ONE;
     } else if (den.compareTo(BigInteger.ZERO) < 0) {
       this.numerator = num.negate();
       this.denominator = den.negate();
@@ -190,7 +180,7 @@ public class BigFraction {
    *    A new BigFraction of the form 0/1.
    */
   protected BigFraction clear() {
-    return new BigFraction(NUM_DEFAULT, DEN_DEFAULT);
+    return new BigFraction(BigInteger.ZERO, BigInteger.ONE);
   } // clear()
 
   /**
